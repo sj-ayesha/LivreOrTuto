@@ -2,8 +2,8 @@ include header.pug
 
 .container
     if (locals.error)
-        .negative.message
-            #error
+        .alert.alert-danger.message
+           p #{error}
     form(action="/", method="post", class="form-group")
         .field
             label(for="message") Message
