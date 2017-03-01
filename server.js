@@ -17,21 +17,20 @@ app.use(session({
   cookie: { secure: false }
 }))
 
+app.use(require('./middlewares/flash.js'))
+
 //gerer mon util
 //a la page racine lance une fonction
 //ROUTE
 app.get('/', (request, response) => {
-    if (request.session.error) {
-        response.locals.error = request.session.error
-        request.session.error = undefined
-    }
+    console.log(request.session)
     response.render('pages/index')
 })
 
 //route
 app.post('/', (request, response) => {
     if (request.body.message === undefined || request.body.message === '') {
-        request.session.error = "Il y a une erreur!"
+        request.flash('error', 'Il na pas de message')
         response.redirect('/')
     }
 })

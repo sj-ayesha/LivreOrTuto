@@ -1,9 +1,9 @@
 include header.pug
 
 .container
-    if (locals.error)
+    if (locals.flash && locals.flash.error)
         .alert.alert-danger.message
-           p #{error}
+           p #{flash.error}
     form(action="/", method="post", class="form-group")
         .field
             label(for="message") Message
